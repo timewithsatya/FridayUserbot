@@ -44,7 +44,7 @@ async def pingy(client, message):
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     await hmm.edit(
-        f"**█▀█ █▀█ █▄░█ █▀▀ █ \n█▀▀ █▄█ █░▀█ █▄█ ▄**\n➲ `{round(ms)}ms` \n➲ `{uptime}` \n➲ `{mys}`"
+        f"**PONG!**\n➲ `{round(ms)}ms` \n➲ `{uptime}` \n➲ `{mys}`"
     )
 
 
