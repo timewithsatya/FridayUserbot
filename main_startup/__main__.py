@@ -9,6 +9,7 @@
 import logging
 import os
 import platform
+import pyrogram
 from main_startup import Config
 from pyrogram import __version__
 from bot_utils_files.Localization.engine import Engine
@@ -124,11 +125,6 @@ Friday Version : {friday_version}
 You Can Visit @FridaySupportOfficial For Updates And @FridayChat For Any Query / Help!
 """
     logging.info(full_info)
-    await pyrogram.idle()
-
-
-if __name__ == "__main__":
-    Friday.loop.run_until_complete(run_bot())
 
 async def bot_started():
 
@@ -136,9 +132,15 @@ async def bot_started():
 
     cap = "Friday Remastered v9.5"
     grp = Config.LOG_GRP
-
+    hi = "message sent"
     await bot.send_photo(
      grp, 
      img, 
      caption=cap
         ) 
+    logging.info(hi)
+    await pyrogram.idle()
+
+if __name__ == "__main__":
+    Friday.loop.run_until_complete(run_bot())
+
