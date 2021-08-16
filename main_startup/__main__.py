@@ -9,6 +9,7 @@
 import logging
 import os
 import platform
+import pyrogram
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from main_startup import Config, bot
 from pyrogram import __version__
