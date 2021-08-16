@@ -139,7 +139,7 @@ await bot.send_photo(
                 [
                     [
                         InlineKeyboardButton(
-                            "😎REPO😎",
+                            "😎REPO😎/support",
                             url="https://github.com/DevsExpo/FridayUserBot",
                         )
                     ],
