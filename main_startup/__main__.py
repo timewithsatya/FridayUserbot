@@ -9,9 +9,7 @@
 import logging
 import os
 import platform
-import pyrogram
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from main_startup import Config, bot
+from main_startup import Config
 from pyrogram import __version__
 from bot_utils_files.Localization.engine import Engine
 from database.localdb import check_lang
@@ -142,16 +140,5 @@ async def bot_started():
     await bot.send_photo(
      grp, 
      img, 
-     caption=cap, 
-     reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            "😎REPO😎",
-                            url="https://github.com/DevsExpo/FridayUserBot",
-                        )
-                    ],
-                  
-                ]
-            ),
+     caption=cap
         ) 
