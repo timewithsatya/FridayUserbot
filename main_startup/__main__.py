@@ -9,6 +9,8 @@
 import logging
 import os
 import platform
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from main_startup import Config, bot
 from pyrogram import __version__
 from bot_utils_files.Localization.engine import Engine
 from database.localdb import check_lang
@@ -128,3 +130,27 @@ You Can Visit @FridaySupportOfficial For Updates And @FridayChat For Any Query /
 
 if __name__ == "__main__":
     Friday.loop.run_until_complete(run_bot())
+
+async def bot_started():
+
+    img = "https://telegra.ph//file/9384e275282985621e7c6.jpg"
+
+    cap = "Friday Remastered v9.5"
+    grp = Config.LOG_GRP
+
+    await bot.send_photo(
+     grp, 
+     img, 
+     caption=cap, 
+     reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            "😎REPO😎",
+                            url="https://github.com/DevsExpo/FridayUserBot",
+                        )
+                    ],
+                  
+                ]
+            ),
+        ) 
