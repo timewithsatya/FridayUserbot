@@ -9,7 +9,8 @@
 import logging
 import os
 import platform
-
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from main_startup import Config, bot
 import pyrogram
 from pyrogram import __version__
 from bot_utils_files.Localization.engine import Engine
@@ -124,6 +125,29 @@ Python Version : {platform.python_version()}
 Friday Version : {friday_version}
 You Can Visit @FridaySupportOfficial For Updates And @FridayChat For Any Query / Help!
 """
+
+img = "https://telegra.ph//file/9384e275282985621e7c6.jpg"
+
+cap = "Friday Remastered v9.5 is back and alive"
+grp = Config.LOG_GRP
+
+await bot.send_photo(
+     grp, 
+     img, 
+     caption=cap, 
+     reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            "😎REPO😎",
+                            url="https://github.com/DevsExpo/FridayUserBot",
+                        )
+                    ],
+                  
+                ]
+            ),
+        ) 
+
     logging.info(full_info)
     await pyrogram.idle()
 
