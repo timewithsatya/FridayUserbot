@@ -8,6 +8,10 @@
 
 import logging
 import os
+
+from pyrogram.methods import messages
+from main_startup import bot
+from main_startup.helper_func.logger_s import LogIt
 import platform
 import pyrogram
 from main_startup import Config
@@ -127,20 +131,11 @@ You Can Visit @FridaySupportOfficial For Updates And @FridayChat For Any Query /
     logging.info(full_info)
 
 async def bot_started():
+    log = LogIt(messages)
+    msg_to_log = "Friday has been Deployed Successfully"
+    await log.log_msg(bot, msg_to_log)
 
-    img = "https://telegra.ph//file/9384e275282985621e7c6.jpg"
-
-    cap = "Friday Remastered v9.5"
-    grp = Config.LOG_GRP
-    hi = "message sent"
-    await bot.send_photo(
-     grp, 
-     img, 
-     caption=cap
-        ) 
-    logging.info(hi)
     await pyrogram.idle()
-
 if __name__ == "__main__":
     Friday.loop.run_until_complete(run_bot())
 
