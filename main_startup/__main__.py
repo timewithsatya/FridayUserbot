@@ -8,13 +8,9 @@
 
 import logging
 import os
-
-from pyrogram.methods import messages
-from main_startup import bot
-from main_startup.helper_func.logger_s import LogIt
 import platform
+
 import pyrogram
-from main_startup import Config
 from pyrogram import __version__
 from bot_utils_files.Localization.engine import Engine
 from database.localdb import check_lang
@@ -69,9 +65,7 @@ async def fetch_plugins_from_channel():
             Config.PLUGIN_CHANNEL, filter="document", query=".py"
         ):
             hmm = message.document.file_name
-            if os.path.exists(os.path.join("./plugins/", hmm)):
-                pass
-            else:
+            if not os.path.exists(os.path.join("./plugins/", hmm)):
                 await Friday.download_media(message, file_name="./plugins/")
     except BaseException as e:
         logging.error(f"Failed! To Install Plugins From Plugin Channel Due To {e}!")
@@ -100,7 +94,7 @@ async def run_bot():
     Friday.selected_lang = await check_lang()
     LangEngine = Engine()
     LangEngine.load_language()
-    Friday.has_a_bot = True if bot else False
+    Friday.has_a_bot = bool(bot)
     if Friday2:
         await Friday2.start()
         Friday2.me = await Friday2.get_me()
@@ -108,11 +102,11 @@ async def run_bot():
     if Friday3:
         await Friday3.start()
         Friday3.me = await Friday3.get_me()
-        Friday3.has_a_bot = True if bot else False
+        Friday3.has_a_bot = bool(bot)
     if Friday4:
         await Friday4.start()
         Friday4.me = await Friday4.get_me()
-        Friday4.has_a_bot = True if bot else False
+        Friday4.has_a_bot = bool(bot)
     if Config.PLUGIN_CHANNEL:
         await fetch_plugins_from_channel()
     needed_mods = plugin_collecter("./plugins/")
@@ -129,13 +123,8 @@ Friday Version : {friday_version}
 You Can Visit @FridaySupportOfficial For Updates And @FridayChat For Any Query / Help!
 """
     logging.info(full_info)
-
-async def bot_started():
-    log = LogIt(messages)
-    msg_to_log = "Friday has been Deployed Successfully"
-    await log.log_msg(bot, msg_to_log)
-
     await pyrogram.idle()
+
+
 if __name__ == "__main__":
     Friday.loop.run_until_complete(run_bot())
-
