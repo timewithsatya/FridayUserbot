@@ -56,7 +56,7 @@ def yt_dl(url, client, message, type_):
                 {
                     "key": "FFmpegExtractAudio",
                     "preferredcodec": "mp3",
-                    "preferredquality": "320",
+                    "preferredquality": "1080",
                 }
             ],
             "outtmpl": "%(id)s.mp3",
